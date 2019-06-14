@@ -35,6 +35,7 @@ providedDeps match {
 // We forked and modified code of Typesafe config, the jar in unmanagedJars is packaged by InterestingLab
 // Project: https://github.com/InterestingLab/config
 unmanagedJars in Compile += file("lib/config-1.3.3-SNAPSHOT.jar")
+unmanagedJars in Compile += file("lib/ojdbc6-12.1.0.2.jar")
 
 libraryDependencies ++= Seq(
 
