@@ -5,7 +5,8 @@ organization := "io.github.interestinglab.waterdrop"
 scalaVersion := "2.11.8"
 
 
-val sparkVersion = "2.4.0"
+//val sparkVersion = "2.4.3"
+val sparkVersion = "2.3.1"
 
 // We should put all spark or hadoop dependencies here,
 //   if coresponding jar file exists in jars directory of online Spark distribution,
@@ -36,17 +37,42 @@ providedDeps match {
 // Project: https://github.com/InterestingLab/config
 unmanagedJars in Compile += file("lib/config-1.3.3-SNAPSHOT.jar")
 unmanagedJars in Compile += file("lib/ojdbc6-12.1.0.2.jar")
+//unmanagedJars in Compile += file("lib/hbase-spark-2.0.0-20160316.173537-2.jar")
 
+/*"org.apache.hbase" % "hbase-spark" % "1.2.0-cdh5.13.3"
+exclude("org.apache.hbase", "hbase-protocol-shaded")
+exclude("org.apache.hbase.thirdparty","hbase-shaded-protobuf")
+exclude("com.google.code.findbugs","jsr305")
+exclude("org.mortbay.jetty","jsp-api-2.1")
+exclude("com.amazonaws","aws-java-sdk-bundle"),*/
 libraryDependencies ++= Seq(
 
   // ------ Spark Dependencies ---------------------------------
   // spark distribution doesn't provide this dependency.
+/*  "org.apache.spark" %% "spark-core" % sparkVersion
+    exclude("com.google.code.findbugs", "jsr305")
+    exclude("javax.servlet.jsp", "jsp-api"),*/
   "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkVersion
     exclude("org.spark-project.spark", "unused")
     exclude("net.jpountz.lz4", "unused"),
   "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion,
   // --------------------------------------------------------
 
+  "org.apache.hbase" % "hbase-common" % "1.1.2",
+  "org.apache.hbase" % "hbase-server" % "1.1.2"
+    exclude("org.apache.hbase", "hbase-protocol-shaded")
+    exclude("org.apache.hbase.thirdparty","hbase-shaded-protobuf")
+    exclude("com.google.code.findbugs","jsr305")
+    exclude("org.eclipse.jetty.orbit","javax.servlet.jsp.jstl")
+    exclude("org.mortbay.jetty","jsp-api-2.1")
+    exclude("com.amazonaws","aws-java-sdk-bundle"),
+  "com.hortonworks" % "shc-core" % "1.1.1-2.1-s_2.11"
+exclude("org.mortbay.jetty", "jsp-api-2.1")
+exclude("org.mortbay.jetty","servlet-api")
+exclude("org.mortbay.jetty","servlet-api-2.5")
+exclude("javax.servlet.jsp","jsp-api")
+exclude("javax.servlet","servlet-api"),
+  //"org.apache.hbase" % "hbase" % "1.2.0",
   "org.mongodb.spark" %% "mongo-spark-connector" % "2.2.0",
   "org.apache.kudu" %% "kudu-spark2" % "1.7.0",
   "com.alibaba" % "QLExpress" % "3.2.0",

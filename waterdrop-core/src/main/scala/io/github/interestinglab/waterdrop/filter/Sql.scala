@@ -36,7 +36,7 @@ class Sql extends BaseFilter {
     val sparkSession = SparkSession.builder.getOrCreate
     val logicalPlan = sparkSession.sessionState.sqlParser.parsePlan(sql)
 
-    if (!logicalPlan.analyzed) {
+    /*if (!logicalPlan.analyzed) {
       val logicPlanStr = logicalPlan.toString
       logicPlanStr.toLowerCase.contains("unresolvedrelation") match {
         case true => (true, "")
@@ -45,9 +45,9 @@ class Sql extends BaseFilter {
           (false, msg)
         }
       }
-    } else {
+    } else {*/
       (true, "")
-    }
+    //}
   }
 
   override def process(spark: SparkSession, df: Dataset[Row]): Dataset[Row] = {

@@ -34,6 +34,7 @@ class KafkaStream extends BaseStructuredStreamingInput {
   var kafkaParams: Map[String, String] = _
   val offsetMeta = new util.HashMap[String, util.HashMap[String, Long]]()
   val pollDuration = 100
+  val pollDurationedit = 1000L
   override def setConfig(config: Config): Unit = {
     this.config = config
   }
@@ -89,7 +90,8 @@ class KafkaStream extends BaseStructuredStreamingInput {
                   .foreach(partition => {
                     val offset = partitionToOffset.getLong(partition)
                     val topicPartition = new TopicPartition(topic, Integer.parseInt(partition))
-                    consumer.poll(Duration.ofMillis(pollDuration))
+                    //consumer.poll(Duration.ofMillis(pollDuration))
+                    consumer.poll(pollDurationedit)
                     consumer.seek(topicPartition, offset)
                   })
               })
