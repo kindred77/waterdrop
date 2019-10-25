@@ -52,6 +52,7 @@ libraryDependencies ++= Seq(
 /*  "org.apache.spark" %% "spark-core" % sparkVersion
     exclude("com.google.code.findbugs", "jsr305")
     exclude("javax.servlet.jsp", "jsp-api"),*/
+  "com.alibaba" % "fastjson" % "1.2.47",
   "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkVersion
     exclude("org.spark-project.spark", "unused")
     exclude("net.jpountz.lz4", "unused"),

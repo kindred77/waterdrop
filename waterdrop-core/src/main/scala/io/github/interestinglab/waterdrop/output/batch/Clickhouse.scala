@@ -263,6 +263,7 @@ class Clickhouse extends BaseOutput {
       case "Float64" => statement.setDouble(index + 1, item.getAs[Double](field))
       case Clickhouse.arrayPattern(_) =>
         statement.setArray(index + 1, item.getAs[WrappedArray[AnyRef]](field))
+        //statement.setArray(index + 1, item.getAs[WrappedArray[Long]](field))
       case _ => statement.setString(index + 1, item.getAs[String](field))
     }
   }

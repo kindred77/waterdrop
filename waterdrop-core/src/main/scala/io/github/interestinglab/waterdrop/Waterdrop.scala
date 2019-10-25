@@ -296,7 +296,6 @@ object Waterdrop extends Logging {
                   sys.exit(-1)
                 }
               }
-
             }
             case Failure(ex) => {
               logError("failed to decompress plugins.tar.gz", ex)
@@ -317,6 +316,5 @@ object Waterdrop extends Logging {
         sparkConf.set(entry.getKey, String.valueOf(entry.getValue.unwrapped()))
       })
 
-    sparkConf
-  }
+    sparkConf  }
 }
